@@ -1,0 +1,507 @@
+/* ==========================================================================
+   1. DESIGN SYSTEM & VARIÁVEIS (Custom Properties)
+   ========================================================================== */
+:root {
+    /* Paleta de Cores Padrão (Foco em Contraste de Texto WCAG AA) */
+    --primary-color: #1b5e20;
+    --primary-light: #4caf50;
+    --secondary-color: #0d47a1;
+    --accent-color: #e65100;
+    --bg-color: #f4f7f4;
+    --surface-color: #ffffff;
+    --text-color: #1c281d;
+    --text-light: #49544a;
+    --border-color: #ced6ce;
+
+    /* Espaçamentos */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --max-width: 1200px;
+
+    /* Arredondamentos e Sombra */
+    --radius: 12px;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    
+    /* Configuração Base de Fonte */
+    --font-base-size: 100%;
+    --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* ==========================================================================
+   2. MODO ALTO CONTRASTE (Acessibilidade Estrita)
+   ========================================================================== */
+body.high-contrast {
+    --primary-color: #ffff00;
+    --primary-light: #ffff80;
+    --secondary-color: #00ffff;
+    --accent-color: #ff00ff;
+    --bg-color: #000000;
+    --surface-color: #121212;
+    --text-color: #ffffff;
+    --text-light: #ffffff;
+    --border-color: #ffffff;
+    --shadow: none;
+}
+
+body.high-contrast * {
+    text-shadow: none !important;
+    box-shadow: none !important;
+}
+
+body.high-contrast .btn-primary {
+    background-color: var(--primary-color);
+    color: #000000 !important;
+    outline: 2px solid #ffffff;
+}
+
+body.high-contrast .card, 
+body.high-contrast .metric-card,
+body.high-contrast .timeline-item {
+    border: 2px solid #ffffff;
+}
+
+/* ==========================================================================
+   3. ESTILOS GERAIS E ATALHOS DE ACESSIBILIDADE
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: var(--font-base-size);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: var(--transition-smooth);
+}
+
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--accent-color);
+    color: white;
+    padding: var(--spacing-sm);
+    z-index: 999;
+    transition: top 0.2s;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-xs);
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.8rem var(--spacing-md);
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    background-color: var(--secondary-color);
+    outline: 3px solid var(--primary-light);
+}
+
+/* ==========================================================================
+   4. BARRA DE ACESSIBILIDADE
+   ========================================================================== */
+.accessibility-bar {
+    background-color: #111;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.accessibility-bar button {
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    padding: 0.4rem var(--spacing-xs);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: var(--transition-smooth);
+}
+
+.accessibility-bar button:hover, .accessibility-bar button:focus {
+    background-color: white;
+    color: black;
+}
+
+/* ==========================================================================
+   5. HEADER & NAVEGAÇÃO RESPONSIVA
+   ========================================================================== */
+.main-header {
+    background-color: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow);
+}
+
+.header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-sm);
+    gap: var(--spacing-sm);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.nav-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    list-style: none;
+}
+
+.nav-menu a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius);
+    transition: var(--transition-smooth);
+}
+
+.nav-menu a:hover, .nav-menu a:focus {
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    outline: 2px solid var(--primary-color);
+}
+
+/* ==========================================================================
+   6. HERO SECTION
+   ========================================================================== */
+.hero-section {
+    background: linear-gradient(rgba(12, 32, 13, 0.8), rgba(12, 32, 13, 0.85)), url('https://picsum.photos/1200/600?nature') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    padding: var(--spacing-lg) var(--spacing-sm);
+}
+
+.hero-content h1 {
+    font-size: 2.6rem;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-md);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ==========================================================================
+   7. GRID - PILARES AMBIENTAIS (EDITÁVEL)
+   ========================================================================== */
+.pillars-section {
+    padding: var(--spacing-lg) 0;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile-First */
+    gap: var(--spacing-sm);
+}
+
+.card {
+    background-color: var(--surface-color);
+    padding: var(--spacing-md);
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+    transition: var(--transition-smooth);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+}
+
+.card h3 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.3rem;
+}
+
+/* ==========================================================================
+   8. SEÇÃO DE MÉTRICAS (INDICADORES GLOBAIS)
+   ========================================================================== */
+.metrics-section {
+    background-color: var(--surface-color);
+    padding: var(--spacing-lg) 0;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+}
+
+.metric-card {
+    background-color: var(--bg-color);
+    padding: var(--spacing-md);
+    border-radius: var(--radius);
+    text-align: center;
+    border-left: 6px solid var(--accent-color);
+}
+
+.metric-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    display: block;
+}
+
+.metric-card h3 {
+    margin: var(--spacing-xs) 0;
+    font-size: 1.2rem;
+}
+
+/* ==========================================================================
+   9. CARROSSEL DE ECOSSISTEMAS
+   ========================================================================== */
+.carousel-section {
+    padding: var(--spacing-lg) 0;
+}
+
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.carousel-slider {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel-slide {
+    min-width: 100%;
+    padding: var(--spacing-lg) var(--spacing-md);
+    background: var(--surface-color);
+    text-align: center;
+}
+
+.carousel-slide h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.carousel-controls {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+    padding: 0 var(--spacing-xs);
+    pointer-events: none;
+}
+
+.btn-carousel {
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    border: none;
+    padding: var(--spacing-sm);
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto;
+    font-size: 1.1rem;
+}
+
+/* ==========================================================================
+   10. LINHA DO TEMPO (TIMELINE)
+   ========================================================================== */
+.timeline-section {
+    background-color: var(--surface-color);
+    padding: var(--spacing-lg) 0;
+}
+
+.timeline-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    position: relative;
+    padding-left: var(--spacing-md);
+    border-left: 4px solid var(--primary-light);
+}
+
+.timeline-item {
+    background-color: var(--bg-color);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius);
+    position: relative;
+}
+
+.timeline-year {
+    font-weight: 800;
+    color: var(--secondary-color);
+    font-size: 1.3rem;
+}
+
+/* ==========================================================================
+   11. ACORDEÃO (FAQ EXPANDIDO)
+   ========================================================================== */
+.faq-section {
+    padding: var(--spacing-lg) 0;
+}
+
+.accordion-item {
+    margin-bottom: var(--spacing-xs);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.accordion-header {
+    width: 100%;
+    background-color: var(--surface-color);
+    color: var(--text-color);
+    text-align: left;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--border-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion-content {
+    background-color: var(--surface-color);
+    padding: 0 var(--spacing-md);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+}
+
+.accordion-content.active {
+    padding: var(--spacing-md);
+    max-height: 300px;
+    border: 1px solid var(--border-color);
+    border-top: none;
+}
+
+/* ==========================================================================
+   12. FOOTER
+   ========================================================================== */
+.main-footer {
+    background-color: #151d16;
+    color: #e3ece4;
+    text-align: center;
+    padding: var(--spacing-md) var(--spacing-sm);
+}
+
+.main-footer p:last-child {
+    font-size: 0.85rem;
+    margin-top: var(--spacing-xs);
+    color: #a4b3a5;
+}
+
+/* ==========================================================================
+   13. SCROLL REVEAL ANIMATION
+   ========================================================================== */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   14. MEDIA QUERIES (Responsividade de Telas)
+   ========================================================================== */
+@media (min-width: 768px) {
+    .header-container {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .hero-content h1 {
+        font-size: 3.8rem;
+    }
+
+    /* Grids adaptativos */
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    /* Layout Avançado para Desktops */
+    .grid-container {
+        grid-template-columns: repeat(4, 1fr); /* 4 colunas em telas grandes */
+    }
+
+    .metrics-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
